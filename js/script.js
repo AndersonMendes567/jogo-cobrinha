@@ -2,6 +2,11 @@ let canvas = document.getElementById('snake')
 let context = canvas.getContext('2d')
 let box = 32
 
+const btnLeft = document.querySelector('.left')
+const btnUp = document.querySelector('.up')
+const btnRight = document.querySelector('.right')
+const btnDown = document.querySelector('.down')
+
 let snake = []
 
 snake[0] = {
@@ -20,6 +25,21 @@ function mudarDirecao(event) {
 }
 
 window.addEventListener('keydown', mudarDirecao)
+btnLeft.addEventListener('click', function () {
+  if (direction != 'right') direction = 'left'
+})
+
+btnUp.addEventListener('click', function () {
+  if (direction != 'down') direction = 'up'
+})
+
+btnRight.addEventListener('click', function () {
+  if (direction != 'left') direction = 'right'
+})
+
+btnDown.addEventListener('click', function () {
+  if (direction != 'up') direction = 'down'
+})
 
 function criaBG() {
   context.fillStyle = 'lightGreen'
@@ -37,7 +57,7 @@ function iniciarJogo() {
   if (snake[0].x > 15 * box && direction == 'right') snake[0].x = 0
   if (snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box
   if (snake[0].y > 15 * box && direction == 'down') snake[0].y = 0
-  if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box 
+  if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box
   criaBG()
   criaSnack()
 
