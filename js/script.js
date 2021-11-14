@@ -12,10 +12,11 @@ snake[0] = {
 let direction = 'right'
 
 function mudarDirecao(event) {
-  if (event.key == 'ArrowRight') direction = 'right'
-  if (event.key == 'ArrowLeft') direction = 'left'
-  if (event.key == 'ArrowUp') direction = 'up'
-  if (event.key == 'ArrowDown') direction = 'down'
+  console.log(event.keyCode)
+  if (event.key == 'ArrowRight' && direction != 'left') direction = 'right'
+  if (event.key == 'ArrowLeft' && direction != 'right') direction = 'left'
+  if (event.key == 'ArrowUp' && direction != 'down') direction = 'up'
+  if (event.key == 'ArrowDown' && direction != 'up') direction = 'down'
 }
 
 window.addEventListener('keydown', mudarDirecao)
@@ -33,6 +34,10 @@ function criaSnack() {
 }
 
 function iniciarJogo() {
+  if (snake[0].x > 15 * box && direction == 'right') snake[0].x = 0
+  if (snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box
+  if (snake[0].y > 15 * box && direction == 'down') snake[0].y = 0
+  if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box 
   criaBG()
   criaSnack()
 
