@@ -16,6 +16,11 @@ snake[0] = {
 
 let direction = 'right'
 
+let food = {
+  x: Math.floor(Math.random() * 15 + 1) * box,
+  y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 function mudarDirecao(event) {
   console.log(event.keyCode)
   if (event.key == 'ArrowRight' && direction != 'left') direction = 'right'
@@ -28,6 +33,8 @@ window.addEventListener('keydown', mudarDirecao)
 btnLeft.addEventListener('click', function () {
   if (direction != 'right') direction = 'left'
 })
+
+// Controle por Botões
 
 btnUp.addEventListener('click', function () {
   if (direction != 'down') direction = 'up'
@@ -53,6 +60,11 @@ function criaSnack() {
   }
 }
 
+function drawFood() {
+  context.fillStyle = 'red'
+  context.fillRect(food.x, food.y, box, box)
+}
+
 function iniciarJogo() {
   if (snake[0].x > 15 * box && direction == 'right') snake[0].x = 0
   if (snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box
@@ -60,6 +72,7 @@ function iniciarJogo() {
   if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box
   criaBG()
   criaSnack()
+  drawFood()
 
   let snakeX = snake[0].x
   let snakeY = snake[0].y
@@ -79,4 +92,4 @@ function iniciarJogo() {
   snake.unshift(newHead)
 }
 
-let jogo = setInterval(iniciarJogo, 250) // define um intervalo de tempo depois de executado uma determinada ação
+let jogo = setInterval(iniciarJogo, 200) // define um intervalo de tempo depois de executado uma determinada ação
