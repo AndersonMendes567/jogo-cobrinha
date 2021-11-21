@@ -1,4 +1,11 @@
 let canvas = document.getElementById('snake')
+
+let smallDisplay = window.matchMedia('(max-width: 550px)')
+if (smallDisplay.matches) {
+  canvas.style.width = '320px'
+  canvas.style.height = '320px'
+}
+
 let context = canvas.getContext('2d')
 let box = 32
 
