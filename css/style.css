@@ -1,3 +1,11 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
 .container {
   max-width: 512px;
   margin: 0 auto;
@@ -7,7 +15,40 @@
   align-items: center;
 }
 
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+header img {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+header h1 {
+  color: #00a763;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
 .controls {
+  display: none;
+}
+
+.small .controls {
+  display: block;
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -15,7 +56,7 @@
 }
 
 .controls button {
-  padding: 10px;
+  padding: 10px 15px;
 }
 
 .left {

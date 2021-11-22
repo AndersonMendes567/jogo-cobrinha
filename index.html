@@ -7,9 +7,20 @@
     <title>Snake Game</title>
     <script src="js/script.js" defer></script>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="snake.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="container">
+      <header>
+        <a href="index.html" class="logo">
+          <img src="img/snake.png" alt="Logo Snake Game" />
+          <h1>Snake Game</h1>
+        </a>
+        <aside>
+          <span id="record"></span>
+          <span id="score">Pontuação: 0</span>
+        </aside>
+      </header>
       <canvas id="snake" width="512px" height="512px"></canvas>
       <div class="controls">
         <button class="left">&larr;</button>

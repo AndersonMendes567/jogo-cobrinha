@@ -1,9 +1,14 @@
+let record = document.getElementById('record')
+let score = document.getElementById('score')
+let qtScores = 0
+record.innerText = `Recorde: ${localStorage.getItem('record')}`
 let canvas = document.getElementById('snake')
 
 let smallDisplay = window.matchMedia('(max-width: 550px)')
 if (smallDisplay.matches) {
   canvas.style.width = '320px'
   canvas.style.height = '320px'
+  document.documentElement.classList.add('small')
 }
 
 let context = canvas.getContext('2d')
@@ -79,13 +84,6 @@ function iniciarJogo() {
   if (snake[0].y > 15 * box && direction != 'up') snake[0].y = 0
   if (snake[0].y < 0 && direction != 'down') snake[0].y = 16 * box
 
-  for (let i = 1; i < snake.length; i++) {
-    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-      clearInterval(jogo)
-      alert('Game Over! :(')
-    }
-  }
-
   criaBG()
   criaSnack()
   drawFood()
@@ -103,6 +101,18 @@ function iniciarJogo() {
   } else {
     food.x = Math.floor(Math.random() * 15 + 1) * box
     food.y = Math.floor(Math.random() * 15 + 1) * box
+    qtScores += 100
+    score.innerText = `Pontuação: ${qtScores}`
+  }
+
+  for (let i = 1; i < snake.length; i++) {
+    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+      clearInterval(jogo)
+      if (qtScores > parseInt(localStorage.getItem('record'))) {
+        localStorage.setItem('record', `${qtScores}`)
+      }
+      alert('Game Over! Que pena, você PERDEU!  :(')
+    }
   }
 
   let newHead = {
