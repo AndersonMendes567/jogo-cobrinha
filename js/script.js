@@ -1,6 +1,11 @@
 let record = document.getElementById('record')
 let score = document.getElementById('score')
 let qtScores = 0
+
+if (localStorage.getItem('record') == null) {
+  localStorage.setItem('record', '0')
+}
+
 record.innerText = `Recorde: ${localStorage.getItem('record')}`
 let canvas = document.getElementById('snake')
 
@@ -112,6 +117,7 @@ function iniciarJogo() {
         localStorage.setItem('record', `${qtScores}`)
       }
       alert('Game Over! Que pena, você PERDEU!  :(')
+      record.innerText = `Recorde: ${localStorage.getItem('record')}`
     }
   }
 
